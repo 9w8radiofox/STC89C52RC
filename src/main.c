@@ -3,7 +3,7 @@
 typedef unsigned char BYTE;
 typedef unsigned int WORD;
 
-#define FOSC 11059200L      //System frequency
+#define FOSC 11059200      //System frequency
 #define BAUD 9600           //UART baudrate
 
 /*Define UART parity mode*/
@@ -20,14 +20,14 @@ __bit busy;
 void uart_init(void);
 int putchar(int c);
 
-void main()
+void main(void)
 {
     int i = 0;
 
     uart_init();
 
     while(1)
-        printf("Count %d\n",++i);
+        printf("Count %d\n",i++);
 }
 
 void uart_init(void){
@@ -49,7 +49,7 @@ void uart_init(void){
 /*----------------------------
 UART interrupt service routine
 ----------------------------*/
-void Uart_Isr() __interrupt 4
+void Uart_Isr(void) __interrupt (4)
 {
     if (RI)
     {
